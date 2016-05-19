@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="194.0" prefWidth="182.0" style="-fx-background-color: #544E4D;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Pane prefHeight="158.0" prefWidth="153.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <VBox layoutX="12.0" layoutY="21.0" spacing="5.0">
+               <children>
+                  <CheckBox fx:id="Bootstrap" layoutX="21.0" layoutY="44.0" mnemonicParsing="false" text="Bootstrap" textFill="#d33333" textOverrun="CLIP" />
+                  <CheckBox fx:id="Direction" layoutX="21.0" layoutY="86.0" mnemonicParsing="false" text="Direction Controls" textFill="#d33333" />
+                  <CheckBox fx:id="Selection" layoutX="21.0" layoutY="133.0" mnemonicParsing="false" text="Selection Controls" textFill="#d33333" />
+                  <CheckBox fx:id="Various" layoutX="21.0" layoutY="165.0" mnemonicParsing="false" text="Various Connections" textFill="#d33333" />
+               </children>
+            </VBox>
+            <Button fx:id="done" layoutX="54.0" layoutY="119.0" mnemonicParsing="false" onAction="#initialize" text="Done" />
+         </children>
+      </Pane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
