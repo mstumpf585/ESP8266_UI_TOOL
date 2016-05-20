@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Controller {
+public class Selection_UI_Controller {
 
     private String html = "";
     private html_string html_gen = new html_string();
