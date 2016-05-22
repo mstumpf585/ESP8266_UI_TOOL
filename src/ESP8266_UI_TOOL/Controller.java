@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.System;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,7 +33,7 @@ import java.util.List;
 
 public class Controller {
 
-    private String html = "";
+    private static String html = "";
     private html_string html_gen = new html_string();
 
 
@@ -61,8 +62,8 @@ public class Controller {
 
         // edit HTML string based on user input
         html+= html_gen.overhead_gen();
-        html+= html_gen.variable_description_gen(description.toString(), author.toString(), "test3");
-
+        html+= html_gen.variable_description_gen(description.getText(), author.getText(), "test3");
+        System.out.println(html);
         //close UI
         Stage stage = (Stage) done_initialize.getScene().getWindow();
         stage.close();
