@@ -14,7 +14,11 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,11 +30,19 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Selection_UI_Controller {
+public class Controller {
 
     private String html = "";
     private html_string html_gen = new html_string();
 
+
+    // initialize UI elements
+    @FXML
+    private TextField author;
+    @FXML
+    private TextField description;
+
+    // selection UI elements
     @FXML
     private CheckBox Bootstrap;
     @FXML
@@ -41,14 +53,29 @@ public class Selection_UI_Controller {
     private CheckBox Various;
     @FXML
     private javafx.scene.control.Button done;
+    @FXML
+    private javafx.scene.control.Button done_initialize;
 
     @FXML
     public  void initialize(ActionEvent event) throws IOException {
 
         // edit HTML string based on user input
         html+= html_gen.overhead_gen();
-        html+= html_gen.variable_description_gen("test","test2","test3");
+        html+= html_gen.variable_description_gen(description.toString(), author.toString(), "test3");
 
+        //close UI
+        Stage stage = (Stage) done_initialize.getScene().getWindow();
+        stage.close();
+
+        //start code generation
+        Stage secondaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Selection_UI.fxml"));
+        secondaryStage.setTitle("ESP8266 UI");
+        secondaryStage.setScene(new Scene(root, 300, 275));
+        secondaryStage.show();
+    }
+
+    public void code_generation(ActionEvent event) throws IOException{
 
         if(Bootstrap.isSelected()){
             html += html_gen.bootstrap_gen();
@@ -57,7 +84,7 @@ public class Selection_UI_Controller {
         //TODO make functions for the 3 if statements
         if(Direction.isSelected()){
 
-            html += "Direction";
+            html += "Discription";
         }
 
         if(Selection.isSelected()){

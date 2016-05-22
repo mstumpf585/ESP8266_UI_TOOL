@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="264.0" prefWidth="260.0" style="-fx-background-color: #353539;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <Pane prefHeight="204.0" prefWidth="223.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+                <VBox layoutX="12.0" layoutY="21.0" spacing="5.0" />
+                <Button fx:id="done_initialize" layoutX="89.0" layoutY="153.0" mnemonicParsing="false" onAction="#initialize" text="Done" />
+            <TextField fx:id="author" layoutX="2.0" layoutY="35.0" />
+            <TextField fx:id="description" layoutX="2.0" layoutY="102.0" />
+            <Label layoutX="12.0" layoutY="8.0" text="Author" textFill="#d33333">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="12.0" layoutY="77.0" text="Discription" textFill="#d33333">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            </children>
+        </Pane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

@@ -27,6 +27,7 @@ class html_string {
     }
 
     protected String variable_description_gen(String description, String author, String icon) {
+
      return   "<!-- leave blank till I figure that shit out-->\n"
                 + "<meta name=\"description\" content=\""+ description +"\">\n"
                 + "<meta name=\"author\" content= \""+ author +"\">\n"
@@ -35,11 +36,27 @@ class html_string {
     }
 
     protected String bootstrap_gen(){
+
         return "<!-- Bootstrap core CSS -->"
                 +"<link href=\"dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n"
                 +"<!-- Custom styles for this template -->\n"
                 +"<link href=\"dist/css/Robo.css\" rel=\"stylesheet\">\n"
                 +"<link href=\"dist/css/acm_small.css\" rel=\"stylesheet\" media = \"min-width: 600px)\">\n"
                 +"<script src=\"assets/js/ie-emulation-modes-warning.js\"></script>\"\n";
+    }
+
+    protected String discription_gen(){
+        //TODO put acctual html here
+        return "idk";
+    }
+
+    protected String Selection_gen(){
+        //TODO put html here
+        return "idk";
+    }
+
+    protected void Various_gen(){
+
+        //TODO well I guess just open another UI here
     }
 }

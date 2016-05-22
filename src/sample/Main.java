@@ -19,16 +19,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Selection_UI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("initialize_UI.fxml"));
         primaryStage.setTitle("ESP8266 UI");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {
         launch(args);
-
-
     }
 }
