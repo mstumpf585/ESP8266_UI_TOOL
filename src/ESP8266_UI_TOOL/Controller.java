@@ -1,4 +1,4 @@
-package sample;
+package ESP8266_UI_TOOL;
 
 /**
  *   Author: Michael Stumpf

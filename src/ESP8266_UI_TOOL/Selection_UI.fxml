@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="194.0" prefWidth="182.0" style="-fx-background-color: #544E4D;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="194.0" prefWidth="182.0" style="-fx-background-color: #544E4D;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ESP8266_UI_TOOL.Controller">
    <children>
       <Pane prefHeight="158.0" prefWidth="153.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
@@ -15,7 +16,7 @@
                   <CheckBox fx:id="Various" layoutX="21.0" layoutY="165.0" mnemonicParsing="false" text="Various Connections" textFill="#d33333" />
                </children>
             </VBox>
-            <Button fx:id="done" layoutX="54.0" layoutY="119.0" mnemonicParsing="false" onAction="#initialize" text="Done" />
+            <Button fx:id="done" layoutX="54.0" layoutY="119.0" mnemonicParsing="false" onAction="#code_generation" text="Done" />
          </children>
       </Pane>
    </children>

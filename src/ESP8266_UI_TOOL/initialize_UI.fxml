@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="264.0" prefWidth="260.0" style="-fx-background-color: #353539;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="264.0" prefWidth="260.0" style="-fx-background-color: #353539;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ESP8266_UI_TOOL.Controller">
     <children>
         <Pane prefHeight="204.0" prefWidth="223.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <children>
