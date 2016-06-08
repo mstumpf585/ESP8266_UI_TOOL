@@ -62,6 +62,7 @@ public class Controller {
 
         // edit HTML string based on user input
         html+= html_gen.overhead_gen();
+        html+= html_gen.spark_fun_void_loop();
         html+= html_gen.variable_description_gen(description.getText(), author.getText(), "test3");
         System.out.println(html);
         //close UI
