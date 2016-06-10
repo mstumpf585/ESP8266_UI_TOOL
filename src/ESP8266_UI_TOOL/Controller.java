@@ -63,7 +63,7 @@ public class Controller {
         // edit HTML string based on user input
         html+= html_gen.overhead_gen();
         html+= html_gen.spark_fun_void_loop();
-        html+= html_gen.variable_description_gen(description.getText(), author.getText(), "test3");
+        html+= html_gen.variable_description_gen(description.getText(), author.getText());
         System.out.println(html);
         //close UI
         Stage stage = (Stage) done_initialize.getScene().getWindow();
@@ -97,9 +97,12 @@ public class Controller {
             html += "Various";
         }
 
-        //put string in a .c file
-        Path file = Paths.get("ESP8266_UI.c");
-        //TODO figure out how to get rid of asList
+        // wrap it up
+        html+= html_gen.wrap_up_gen();
+        html += html_gen.wifi_gen();
+
+        //put string in a .ino file
+        Path file = Paths.get("ESP8266_UI.ino");
         List<String> lines = Arrays.asList(html);
         Files.write(file, lines, Charset.forName("UTF-8"));
 

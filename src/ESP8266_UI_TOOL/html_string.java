@@ -1,5 +1,7 @@
 package ESP8266_UI_TOOL;
 
+import java.io.IOException;
+
 /**
  *   Author: Michael Stumpf
  *   Edit Date: 5/17/2016
@@ -61,22 +63,22 @@ class html_string {
     protected String spark_fun_void_loop() {
 
         return "// void loop was takin from sparkfun code\n"
-                + "void loop()\n"
+                + "void loop()"
                 + "{\n"
-                + "// Check if a client has connected\n"
-                + "WiFiClient client = server.available();\n"
-                + "if (!client) {\n"
-                + "return;\n"
+                + "   // Check if a client has connected\n"
+                + "   WiFiClient client = server.available();\n"
+                + "   if (!client) {\n"
+                + "   return;\n"
                 + "}\n"
 
                 + "// Read the first line of the request\n"
-                + "String req = client.readStringUntil('\r');\n"
+                + "String req = client.readStringUntil('\\r');\n"
                 + "Serial.println(req);\n"
                 + "client.flush();\n"
 
                 + "// Match the request\n"
                 + "int val = -1;                                // We'll use 'val' to keep track of both the\n"
-                + "// request type (read/set) and value if set.\n"
+                + "                                             // request type (read/set) and value if set.\n"
                 + "if (req.indexOf(\"/GPIO1/off\") != -1)\n"
                 + "digitalWrite(GPIO1, 0);                      // Will write gpio1 low\n"
                 + "else if (req.indexOf(\"/GPIO1/on\") != -1)\n"
@@ -87,43 +89,35 @@ class html_string {
                 + "digitalWrite(GPIO2, 1);\n"
 
                 + "// Otherwise request will be invalid. We'll say as much in HTML\n"
-                + "client.flush();\n"
+                + "client.flush();\n\n"
 
                 + "// web response\n"
                 + "String s = \"HTTP/1.1 200 OK\\r\\n\";\n"
                 + "s += \"Content-Type: text/html\\r\\n\\r\\n\";\n"
-                + "s += \"<!DOCTYPE HTML>\\r\\n<html>\\r\\n\";\n"
+                + "s += \"<!DOCTYPE HTML>\\r\\n<html>\\r\\n\";\n\n";
 
-                + "// If we're setting the LED, print out a message saying we did\n"
-                + "if (val >= 0)\n"
-                + "{"
-                + "s += \"Some Shit wentt down \";\n"
-                + "}\n"
-                + "else\n"
-                + "{\n"
-                + "s += \"Invalid Request.<br> Try /led/1, /led/0, or /read.\";\n"
-                + "}\n"
-                + "*/\n"
 
+    }
+
+    protected String variable_description_gen(String description, String author) {
+
+     return "s+= \"<meta name=\"description\" content=\""+ description +"\">\";\n"
+             + "s+= \"<meta name=\"author\" content= \""+ author +"\">\";\n";
+    }
+
+    protected String wrap_up_gen(){
+
+        return "// put logic here\n\n"
 
                 + "// Send the response to the client\n"
                 + "client.println(s);\n"
-                + "client.println(header + css_start + css_html + css_gButton + css_end + body_start + div_start + fwd + back + div_end + body_end + html_end);\n"
+                + "client.println(header + css_start + css_html + css_end + body_start + div_start + div_end + body_end + html_end);\n"
                 + "delay(1);\n"
                 + "Serial.println(\"Client disonnected\");\n"
 
                 + "// The client will actually be disconnected\n"
                 + "// when the function returns and 'client' object is detroyed\n"
                 + "}\n";
-    }
-
-    protected String variable_description_gen(String description, String author, String icon) {
-
-     return   "<!-- leave blank till I figure that shit out-->\n"
-                + "<meta name=\"description\" content=\""+ description +"\">\n"
-                + "<meta name=\"author\" content= \""+ author +"\">\n"
-                + "<link rel=\"icon\" href=\""+ icon +"\">\n"
-                + "<title></title>\n";
     }
 
     protected String bootstrap_gen(){
@@ -136,18 +130,42 @@ class html_string {
                 +"<script src=\"assets/js/ie-emulation-modes-warning.js\"></script>\"\n";
     }
 
-    protected String discription_gen(){
-        //TODO put acctual html here
-        return "idk";
-    }
-
-    protected String Selection_gen(){
+    protected String wifi_gen(){
         //TODO put html here
-        return "idk";
+        return   "void setupWiFi() {\n"
+
+                    + "WiFi.mode(WIFI_AP);\n\n"
+
+                    + "   // Do a little work to get a unique-ish name. Append the"
+                    + "   // last two bytes of the MAC (HEX'd) to \"Thing-\":\n"
+                    + "   uint8_t mac[WL_MAC_ADDR_LENGTH];\n"
+                    + "   WiFi.softAPmacAddress(mac);\n"
+                    + "   String macID = String(mac[WL_MAC_ADDR_LENGTH - 2], HEX) +\n"
+                    + "      String(mac[WL_MAC_ADDR_LENGTH - 1], HEX);\n"
+                    + "   macID.toUpperCase();\n"
+                    + "   String AP_NameString = \"ESP8266 network \" + macID;\n\n"
+
+                    + "   char AP_NameChar[AP_NameString.length() + 1];\n"
+                    + "   memset(AP_NameChar, 0, AP_NameString.length() + 1);\n\n"
+
+                    + "  for (int i=0; i<AP_NameString.length(); i++)\n"
+                    + "    AP_NameChar[i] = AP_NameString.charAt(i);\n\n"
+
+                    + "  WiFi.softAP(AP_NameChar, WiFiAPPSK);\n"
+                    + "}"
+
+                    + "void initHardware() {\n"
+                    + "   Serial.begin(115200);\n"
+                    + "   pinMode(GPIO1, OUTPUT);\n"
+                    + "   pinMode(GPIO2, OUTPUT);\n"
+                    + "   digitalWrite(GPIO1, LOW);\n"
+                    + "}\n\n"
+
+                    + "void setup(){\n"
+                    + "   initHardware();\n"
+                    + "   setupWiFi();\n"
+                    + "   server.begin();\n"
+                    + "} \n";
     }
 
-    protected void Various_gen(){
-
-        //TODO well I guess just open another UI here
-    }
 }
